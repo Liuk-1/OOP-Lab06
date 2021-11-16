@@ -73,7 +73,7 @@ public final class UseCollection {
     	long time = System.nanoTime();
     	
     	for(int i = 0; i < N_ELEMENTS; i++) {
-    		arrayList.add(i, i);
+    		arrayList.add(0, i);
     	}
     	
     	time = System.nanoTime() - time;
@@ -83,7 +83,7 @@ public final class UseCollection {
     	time = System.nanoTime();
     	
     	for(int i = 0; i < N_ELEMENTS; i++) {
-    		linkedList.add(i, i);
+    		linkedList.add(0, i);
     	}
     	
     	time = System.nanoTime() - time;
