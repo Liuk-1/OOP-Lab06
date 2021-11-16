@@ -54,7 +54,7 @@ public class RobotEnvironment {
             this.position.setX(newX);
             this.position.setY(newY);
         } else {
-        	throw new PositionOutOfBoundException(getCurrPosX(), getCurrPosY());
+        	throw new PositionOutOfBoundException(newX, newY);
         }
     }
 
