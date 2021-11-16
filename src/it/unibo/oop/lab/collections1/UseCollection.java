@@ -52,8 +52,10 @@ public final class UseCollection {
          * 4) Using a single for-each, print the contents of the arraylist.
          */
     	for(Integer elem : arrayList) {
-    		System.out.println(elem);
+    		System.out.print(elem + " ");
     	}
+    	
+    	System.out.println();
         /*
          * 5) Measure the performance of inserting new elements in the head of
          * the collection: measure the time required to add 100.000 elements as
@@ -69,7 +71,7 @@ public final class UseCollection {
     	
     	time = System.nanoTime() - time;
     	
-    	System.out.println(time / TO_MS);
+    	System.out.println("arrayList head insert time in ms: " + time / TO_MS);
     	
     	time = System.nanoTime();
     	
@@ -79,7 +81,7 @@ public final class UseCollection {
     	
     	time = System.nanoTime() - time;
     	
-    	System.out.println(time / TO_MS);
+    	System.out.println("linkedList head insert time in ms: " + time / TO_MS);
         /*
          * 6) Measure the performance of reading 1000 times an element whose
          * position is in the middle of the collection for both ArrayList and
@@ -91,14 +93,14 @@ public final class UseCollection {
     		arrayList.get(arrayList.size() / 2);
     	}
     	time = System.nanoTime() - time;
-    	System.out.println(time / TO_MS);
+    	System.out.println("arrayList 1000 reads time in ms: " + time / TO_MS);
     	
     	time = System.nanoTime();
     	for(int i = 0; i < READ_TIMES; i++) {
     		linkedList.get(arrayList.size() / 2);
     	}
     	time = System.nanoTime() - time;
-    	System.out.println(time / TO_MS);
+    	System.out.println("linkedList 1000 reads time in ms: " + time / TO_MS);
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
@@ -129,6 +131,6 @@ public final class UseCollection {
     	for(final Long population : worldMap.values()) {
     		worldPopulation += population;
     	}
-    	System.out.println(worldPopulation);
+    	System.out.println("world population: " + worldPopulation);
     }
 }
