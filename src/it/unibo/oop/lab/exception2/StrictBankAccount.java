@@ -49,10 +49,17 @@ public class StrictBankAccount implements BankAccount {
      * {@inheritDoc}
      */
     public void withdraw(final int usrID, final double amount) {
-        if (checkUser(usrID) && isWithdrawAllowed(amount)) {
-            this.balance -= amount;
-            increaseTransactionsCount();
-        }
+    	if(checkUser(usrID)) {
+    		if(isWithdrawAllowed(amount)) {
+    			this.balance -= amount;
+                increaseTransactionsCount();
+    		}else {
+    			throw new NotEnoughFoundsException();
+    		}
+    	}else {
+    		throw new WrongAccountHolderException();    		
+    	}
+
     }
 
     /**
