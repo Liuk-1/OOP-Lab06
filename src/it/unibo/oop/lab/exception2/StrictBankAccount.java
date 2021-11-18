@@ -35,10 +35,12 @@ public class StrictBankAccount implements BankAccount {
      * 
      * {@inheritDoc}
      */
-    public void deposit(final int usrID, final double amount) {
+    public void deposit(final int usrID, final double amount) throws WrongAccountHolderException{
         if (checkUser(usrID)) {
             this.balance += amount;
             increaseTransactionsCount();
+        }else {
+        	throw new WrongAccountHolderException();
         }
     }
 
