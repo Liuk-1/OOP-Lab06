@@ -23,5 +23,34 @@ public final class TestStrictBankAccount {
          * presenza di un id utente errato, oppure al superamento del numero di
          * operazioni ATM gratuite.
          */
+    	
+    	AccountHolder person1 = new AccountHolder("Mario", "Rossi", 126);
+    	AccountHolder person2 = new AccountHolder("Luca", "Bianchi", 99);
+    	
+    	StrictBankAccount bankAccount1 = new StrictBankAccount(126, 1000, 10);
+    	StrictBankAccount bankAccount2 = new StrictBankAccount(99, 1000, 10);
+    	
+    	try {
+    		for(int i = 0; i < 20; i++) {
+    			bankAccount1.depositFromATM(126, 10);
+    		}
+    	}catch(NotEnoughFoundsException | WrongAccountHolderException | TransactionsOverQuotaException e){
+    		System.out.println(e.toString());
+    	}
+    	
+    	try {
+    		bankAccount1.deposit(30, 500.00);
+    	}catch(WrongAccountHolderException e) {
+    		System.out.println(e.toString());
+    	}
+    	
+    	try {
+    		for(int i = 0; i < 3; i++) {
+    			bankAccount2.withdrawFromATM(99, 500);
+    		}
+    	}catch(NotEnoughFoundsException | WrongAccountHolderException | TransactionsOverQuotaException e){
+    		System.out.println(e.toString());
+    	}
+    	
     }
 }
