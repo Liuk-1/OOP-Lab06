@@ -96,8 +96,17 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public List<U> getFollowedUsers() {
+    	ArrayList<U> everyFollowedUser = new ArrayList<>();
     	
-        return null;
+    	Collection<Set<U>> coll = this.followedUsers.values();
+    	
+    	for(Set<U> groupSet : coll) {
+    		for(U user : groupSet) {
+    			everyFollowedUser.add(user);
+    		}
+    		
+    	}
+    	return everyFollowedUser;
     }
 
 }
