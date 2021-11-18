@@ -1,7 +1,10 @@
 package it.unibo.oop.lab.collections2;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -29,7 +32,8 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      * 
      * think of what type of keys and values would best suit the requirements
      */
-
+	private HashMap<String, Set<U>> followers;
+	
     /*
      * [CONSTRUCTORS]
      * 
@@ -57,6 +61,10 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
     }
+    
+    public SocialNetworkUserImpl(final String name, final String surname, final String user) {
+    	super(name, surname, user, -1);
+    }
 
     /*
      * [METHODS]
@@ -66,7 +74,16 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-        return false;
+    	
+    	Set<U> newFollowerCircle = this.followers.get(circle);
+    	
+        if(newFollowerCircle == null) { // no friends already in the circle, new set of User
+        	newFollowerCircle = new HashSet<>();
+        	newFollowerCircle.add(user);
+        	this.followers.put(circle, newFollowerCircle);
+        }
+        
+       return newFollowerCircle.add(user);
     }
 
     @Override
