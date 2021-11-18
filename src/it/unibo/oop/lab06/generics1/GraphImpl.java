@@ -18,7 +18,10 @@ public class GraphImpl<N> implements Graph<N> {
 
 	@Override
 	public void addEdge(N source, N target) {
-		// TODO Auto-generated method stub
+		if((source != null) && (target != null)) {
+			this.nodes.get(source).add(target);
+			this.nodes.get(target).add(source);
+		}
 		
 	}
 
