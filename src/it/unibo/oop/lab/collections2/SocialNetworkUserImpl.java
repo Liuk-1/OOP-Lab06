@@ -79,7 +79,6 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     	
         if(newFollowerCircle == null) { // no friends already in the circle, new set of User
         	newFollowerCircle = new HashSet<>();
-        	newFollowerCircle.add(user);
         	this.followers.put(circle, newFollowerCircle);
         }
         
