@@ -32,7 +32,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      * 
      * think of what type of keys and values would best suit the requirements
      */
-	private HashMap<String, Set<U>> followers;
+	private HashMap<String, Set<U>> followedUser;
 	
     /*
      * [CONSTRUCTORS]
@@ -75,11 +75,11 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
     	
-    	Set<U> newFollowerCircle = this.followers.get(circle);
+    	Set<U> newFollowerCircle = this.followedUser.get(circle);
     	
         if(newFollowerCircle == null) { // no friends already in the circle, new set of User
         	newFollowerCircle = new HashSet<>();
-        	this.followers.put(circle, newFollowerCircle);
+        	this.followedUser.put(circle, newFollowerCircle);
         }
         
        return newFollowerCircle.add(user);
