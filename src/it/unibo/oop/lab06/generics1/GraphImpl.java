@@ -52,8 +52,25 @@ public class GraphImpl<N> implements Graph<N> {
 
 	@Override
 	public List<N> getPath(N source, N target) {
+		List<N> path = new ArrayList<N>();
+		List<N> possiblePath = new ArrayList<N>();
 		
-		return null;
+		if(this.nodes.get(source) != null) {
+			path.add(source);
+			if(this.nodes.get(source).contains(target)) {
+				path.add(target); // target reached
+			}else {
+				for(N node : this.nodes.get(source)) {
+					possiblePath = this.getPath(node, target);
+					if(possiblePath != null) {
+						path.addAll(possiblePath);
+					}
+				}
+			}
+			
+		}
+		
+		return path;
 	}
 
 }
