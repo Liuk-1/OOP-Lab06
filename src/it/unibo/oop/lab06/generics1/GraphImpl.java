@@ -10,7 +10,11 @@ import java.util.Set;
 
 public class GraphImpl<N> implements Graph<N> {
 
-	private Map<N, Set<N>> nodes = new HashMap<>();
+	private Map<N, Set<N>> nodes;
+	
+	public GraphImpl() {
+		this.nodes = new HashMap<N, Set<N>>();
+	}
 	
 	@Override
 	public void addNode(N node) {
@@ -22,8 +26,16 @@ public class GraphImpl<N> implements Graph<N> {
 	@Override
 	public void addEdge(N source, N target) {
 		if((source != null) && (target != null)) {
+			if(this.nodes.get(target) == null) {
+				this.nodes.putIfAbsent(target, new HashSet<N>());
+			}
 			this.nodes.get(source).add(target);
+			
+			if(this.nodes.get(source) == null) {
+				this.nodes.putIfAbsent(source, new HashSet<N>());
+			}
 			this.nodes.get(target).add(source);
+			
 		}
 	}
 
@@ -40,13 +52,12 @@ public class GraphImpl<N> implements Graph<N> {
 
 	@Override
 	public Set<N> linkedNodes(N node) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nodes.get(node);
 	}
 
 	@Override
 	public List<N> getPath(N source, N target) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
