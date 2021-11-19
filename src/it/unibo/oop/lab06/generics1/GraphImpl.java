@@ -1,6 +1,9 @@
 package it.unibo.oop.lab06.generics1;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,13 +25,17 @@ public class GraphImpl<N> implements Graph<N> {
 			this.nodes.get(source).add(target);
 			this.nodes.get(target).add(source);
 		}
-		
 	}
 
 	@Override
 	public Set<N> nodeSet() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<N> everyNode = new HashSet<N>();
+		Collection<Set<N>> coll = this.nodes.values();
+		
+		for(Set<N> elem : coll) {
+			everyNode.addAll(elem);
+		}
+		return everyNode;
 	}
 
 	@Override
