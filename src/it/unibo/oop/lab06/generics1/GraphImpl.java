@@ -25,16 +25,11 @@ public class GraphImpl<N> implements Graph<N> {
 
 	@Override
 	public void addEdge(N source, N target) {
-		if((source != null) && (target != null)) {
-			if(this.nodes.get(target) == null) {
-				this.nodes.putIfAbsent(target, new HashSet<N>());
-			}
-			this.nodes.get(source).add(target);
-			
+		if((source != null) && (target != null)) {			
 			if(this.nodes.get(source) == null) {
 				this.nodes.putIfAbsent(source, new HashSet<N>());
 			}
-			this.nodes.get(target).add(source);
+			this.nodes.get(source).add(target);
 			
 		}
 	}
