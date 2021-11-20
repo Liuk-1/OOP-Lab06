@@ -1,5 +1,7 @@
 package it.unibo.oop.lab.exception2;
 
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 
 /**
@@ -34,22 +36,34 @@ public final class TestStrictBankAccount {
     		for(int i = 0; i < 20; i++) {
     			bankAccount1.depositFromATM(126, 10);
     		}
-    	}catch(NotEnoughFoundsException | WrongAccountHolderException | TransactionsOverQuotaException e){
+    	}catch(NotEnoughFoundsException e) {
+    		fail("should have no founds problem");
+    	}catch(TransactionsOverQuotaException e) {
     		System.out.println(e.toString());
+    	}catch(WrongAccountHolderException e) {    	
+    		fail("it's my bank account!");
     	}
     	
     	try {
     		bankAccount1.deposit(30, 500.00);
     	}catch(WrongAccountHolderException e) {
     		System.out.println(e.toString());
+    	}catch(NotEnoughFoundsException e) {
+    		fail("should have no founds problem");
+    	}catch(TransactionsOverQuotaException e) {
+    		fail("should have no problem with the transactions limit");
     	}
     	
     	try {
     		for(int i = 0; i < 3; i++) {
     			bankAccount2.withdrawFromATM(99, 500);
     		}
-    	}catch(NotEnoughFoundsException | WrongAccountHolderException | TransactionsOverQuotaException e){
+    	}catch(NotEnoughFoundsException e){
     		System.out.println(e.toString());
+    	}catch(WrongAccountHolderException e) {
+    		fail("it's my bank account");
+    	}catch(TransactionsOverQuotaException e) {
+    		fail("should have no problem with the transactions limit");
     	}
     	
     }
